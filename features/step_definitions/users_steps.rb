@@ -8,4 +8,5 @@ end
 
 Então("veremos os detalhes do usuário") do
     expect(@users.code).to eq 200
+    expect(@users["data"]).to include("Naik")
 end
