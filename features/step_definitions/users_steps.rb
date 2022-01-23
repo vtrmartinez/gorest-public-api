@@ -15,11 +15,9 @@ Quando('buscar o post do primeiro ID da lista') do
 end
 
 Então("veremos os detalhes do usuário") do
-    expect(@user_naik.code).to eq 200
-    expect(@user_naik["data"]).to include("Naik")
+    @page.(Users).verify_user_details(@user_naik)
 end
 
 Então('veremos os detalhes do post do usuário') do
-    expect(@response_first_id.code).to eq 200
-    expect(@response_first_id).to include("data")
+    @page.(Users).verify_posts_details(@response_first_id)
 end

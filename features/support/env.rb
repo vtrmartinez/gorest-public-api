@@ -4,6 +4,7 @@ require 'httparty'
 require 'byebug'
 require 'faker'
 require 'openssl'
+require 'json'
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
