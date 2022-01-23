@@ -1,0 +1,11 @@
+reports/
+*.html
+*.png
+.irb-history
+.DS_Store
+.byebug_history
+Gemfile.lock
+.vscode*
+.idea
+*.dylib
+.vscode/settings.json
