@@ -14,3 +14,9 @@ Cenário: Verificar post do primeiro ID encontrado
     Dado que buscamos a lista de usuários
     Quando buscar o post do primeiro ID da lista
     Então veremos os detalhes do post do usuário
+
+@criar_usuario
+Cenário: Criar usuário
+    Dado que temos o POST de usuário
+    Quando enviamos a requisição
+    Então veremos o usuário criado
