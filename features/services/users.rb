@@ -3,7 +3,7 @@ class Users
     include RSpec::Matchers
     
     base_uri HOSTS["uri"]
-
+    
     def get_all_users
         response = self.class.get(PATHS["users"])
         response["data"][0]["id"]
@@ -26,9 +26,23 @@ class Users
         payload = json_parsed
     end
 
+    def format_json_update_user
+        json = File.read('features/templates/put_update_user.json')
+        json_parsed = JSON.parse(json)
+        json_parsed['name'] = Faker::Name.name + " Update"
+        json_parsed['email'] = Faker::Internet.email
+        payload = json_parsed
+    end
+
     def create_user(payload)
-        auth = "83670be77dccc666b6f4f810b198e0a8f248c6c75dc70857e6d426ed2159468e"
-        response = self.class.post(PATHS['users'], headers: { "Authorization" => "Bearer #{auth}"}, body: payload)
+        auth = TOKEN['bearer_token']
+        self.class.post(PATHS['users'], headers: { "Authorization" => "Bearer #{auth}"}, body: payload)
+    end
+
+    def update_user(user_created, payload)
+        auth = TOKEN['bearer_token']
+        id = user_created["data"]["id"]
+        response = self.class.put(PATHS['users'] + "/#{id}", headers: { "Authorization" => "Bearer #{auth}"}, body: payload)
     end
 
     def verify_user_details(user_naik)
@@ -58,5 +72,9 @@ class Users
         puts "E-mail: #{user_created["data"]["email"]}"
         puts "Sexo: #{user_created["data"]["gender"]}"
         puts "Status: #{user_created["data"]["status"]}"
+    end
+
+    def verify_user_updated(user_updated)
+        expect(user_updated.code).to eq 200
     end
 end

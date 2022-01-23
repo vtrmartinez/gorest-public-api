@@ -10,6 +10,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 HOSTS = YAML.load_file('config/hosts.yml')
 PATHS = YAML.load_file('config/paths.yml')
+TOKEN = YAML.load_file('config/token.yml')
 
 page = lambda {|klass| klass.new}
 

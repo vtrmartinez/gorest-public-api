@@ -18,5 +18,11 @@ Cenário: Verificar post do primeiro ID encontrado
 @criar_usuario
 Cenário: Criar usuário
     Dado que temos o POST de usuário
-    Quando enviamos a requisição
+    Quando enviamos a requisição para criar usuário
     Então veremos o usuário criado
+
+@atualizar_usuario
+Cenário: Atualizar usuário
+    Dado que temos o PUT de usuário
+    Quando enviamos a requisição para atualizar usuário
+    Então veremos o usuário atualizado
