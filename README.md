@@ -52,3 +52,28 @@ $ bundle install
 ```
 $ cucumber
 ```
+# Tags
+
+Nós usamos tags para rodar cenários específicos. Usamos a sintaxe " -t @nome_tag"
+
+Example:
+
+```
+$ cucumber -t @users
+```
+
+#### Todas as Tags
+```
+@user            - Executa todos os cenários da funcionalidade Users
+@naik            - Executa o cenário que procura usuários por Naik
+@first_id        - Executa o cenário que busca os posts de usuário pelo primeiro ID da busca
+@create_user     - Executa o cenário para criar usuário
+@update_user     - Executa o cenário para atualizar usuário
+@delete_user     - Executa o cenário para deletar usuário
+```
+
+# Gerar Relatório
+
+```
+cucumber --format html --out reports.html
+```
