@@ -18,6 +18,13 @@ Dado('que temos o PUT de usuário') do
     @payload_update_user = @page.(Users).format_json_update_user
 end
 
+Dado('que temos o DELETE de usuário') do
+    steps %{
+        Dado que temos o POST de usuário
+        Quando enviamos a requisição para criar usuário
+    }
+end
+
 Quando("buscar o usuário Naik") do
     @user_naik = @page.(Users).get_user("Naik")
 end
@@ -32,6 +39,10 @@ end
 
 Quando('enviamos a requisição para atualizar usuário') do
     @user_updated = @page.(Users).update_user(@user_created, @payload_update_user)
+end
+
+Quando('enviamos a requisição para deletar usuário') do
+    @user_deleted = @page.(Users).delete_user(@user_created)
 end
 
 Então("veremos os detalhes do usuário") do
@@ -49,4 +60,7 @@ end
 Então('veremos o usuário atualizado') do
     @page.(Users).verify_user_updated(@user_updated)
 end
-  
+
+Então('veremos o usuário deletado') do
+    @page.(Users).verify_user_deleted(@user_deleted)
+end

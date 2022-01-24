@@ -42,7 +42,13 @@ class Users
     def update_user(user_created, payload)
         auth = TOKEN['bearer_token']
         id = user_created["data"]["id"]
-        response = self.class.put(PATHS['users'] + "/#{id}", headers: { "Authorization" => "Bearer #{auth}"}, body: payload)
+        self.class.put(PATHS['users'] + "/#{id}", headers: { "Authorization" => "Bearer #{auth}"}, body: payload)
+    end
+
+    def delete_user(user_created)
+        auth = TOKEN['bearer_token']
+        id = user_created["data"]["id"]
+        self.class.delete(PATHS['users'] + "/#{id}", headers: { "Authorization" => "Bearer #{auth}"})
     end
 
     def verify_user_details(user_naik)
@@ -67,6 +73,7 @@ class Users
 
     def verify_user_created(user_created)
         expect(user_created.code).to eq 200
+        expect(user_created["code"]).to eq 201
         puts "ID: #{user_created["data"]["id"]}"
         puts "Nome: #{user_created["data"]["name"]}"
         puts "E-mail: #{user_created["data"]["email"]}"
@@ -76,5 +83,11 @@ class Users
 
     def verify_user_updated(user_updated)
         expect(user_updated.code).to eq 200
+        expect(user_updated["code"]).to eq 200
+    end
+
+    def verify_user_deleted(user_deleted)
+        expect(user_deleted.code).to eq 200
+        expect(user_deleted["code"]).to eq 204
     end
 end

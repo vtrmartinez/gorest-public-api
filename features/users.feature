@@ -26,3 +26,9 @@ Cenário: Atualizar usuário
     Dado que temos o PUT de usuário
     Quando enviamos a requisição para atualizar usuário
     Então veremos o usuário atualizado
+
+@deletar_usuario
+Cenário: Deletar usuário
+    Dado que temos o DELETE de usuário
+    Quando enviamos a requisição para deletar usuário
+    Então veremos o usuário deletado
